@@ -3,22 +3,11 @@ package pwr.bts.stream;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *	Klasa ArrayBitOutputStream implementuje BitOutputStream, czyli jest strumieniem wyjsciowym
- * bitow, ktore sa wysylane do odbiornika. Jest to strumien, ktory przechowuje bity w array liscie.
- *
- */
 public class ArrayBitOutputStream implements BitOutputStream {
 
-	/**
-	 * Lista bitow, ktore przechowuje aktualnie nasz strumien wyjsciowy.
-	 */
 	private final List<Byte> data = new ArrayList<>();
 	private int bitCount;
 	
-	/**
-	 * Konstruktor domyslny.
-	 */
 	public ArrayBitOutputStream() {
 		data.add((byte) 0);
 	}

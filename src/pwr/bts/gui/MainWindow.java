@@ -140,7 +140,7 @@ public class MainWindow extends JFrame{
 	}
 	
 	private void startSimulation() {
-		String desyncBitCount = JOptionPane.showInputDialog("Podaj liczbê takich samych kolejno wystêpuj¹cych bitów powoduj¹cych desynchronizacjê: ");
+		String desyncBitCount = JOptionPane.showInputDialog("Podaj liczbï¿½ takich samych kolejno wystÄ™pujÄ…cych bitÃ³w powodujÄ…cych desynchronizacjÄ™: ");
 		
 		if(desyncBitCount != null && !desyncBitCount.isEmpty()) {
 			simulator.simulate(Integer.parseInt(desyncBitCount));

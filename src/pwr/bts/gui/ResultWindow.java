@@ -41,15 +41,15 @@ public class ResultWindow extends JFrame {
 	}
 	
 	private void makePanels() {
-		zerosBefore = getPanel("Zera (wejœcie)", simulator.getSent(), 0);
-		zerosAfter = getPanel("Zera (wyjœcie nadajnika)", simulator.getTransOut(), 0);
-		onesBefore = getPanel("Jedynki (wejœcie)", simulator.getSent(), 1);
-		onesAfter = getPanel("Jedynki (wyjœcie nadajnika)", simulator.getTransOut(), 1);
+		zerosBefore = getPanel("Zera (wejÅ›cie)", simulator.getSent(), 0);
+		zerosAfter = getPanel("Zera (wyjÅ›cie nadajnika)", simulator.getTransOut(), 0);
+		onesBefore = getPanel("Jedynki (wejÅ›cie)", simulator.getSent(), 1);
+		onesAfter = getPanel("Jedynki (wyjÅ›cie nadajnika)", simulator.getTransOut(), 1);
 	}
 
 	private ChartPanel getPanel(String title, BitInputStream stream, int lookForValue) {
 		XYSeriesCollection collection = getCollection(stream, lookForValue);
-		JFreeChart chart = ChartFactory.createXYBarChart(title, "D³ugoœæ ci¹gu", false, "Liczba wyst¹pieñ", collection, 
+		JFreeChart chart = ChartFactory.createXYBarChart(title, "DÅ‚ugoÅ›Ä‡ ciÄ…gu", false, "Liczba wystÄ…pieÅ„", collection,
 				PlotOrientation.VERTICAL, false, true, false);
 		
 		ChartPanel panel = new ChartPanel(chart);

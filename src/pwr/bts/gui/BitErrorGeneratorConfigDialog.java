@@ -60,7 +60,7 @@ public class BitErrorGeneratorConfigDialog implements BitProcessorConfigDialog {
 
 	@Override
 	public String getDescription() {
-		String description = String.format("(Srednia: %s | Ochylenie: %s)", meanTextField.getText(), stddevTextField.getText()); 
+		String description = String.format("(Srednia: %s | Odchylenie: %s)", meanTextField.getText(), stddevTextField.getText());
 		return (meanTextField.getText().isEmpty() && stddevTextField.getText().isEmpty()) ? "" : description;
 	}
 

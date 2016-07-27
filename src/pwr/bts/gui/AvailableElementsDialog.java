@@ -23,7 +23,7 @@ public class AvailableElementsDialog {
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 0;
-		components.add(new JLabel("Wybierz jeden z poni¿szych elementów"), c);
+		components.add(new JLabel("Wybierz jeden z poniÅ¼szych elementÃ³w"), c);
 		
 		options = new JComboBox<BitProcessorWrapper>();
 		options.addActionListener(new ActionListener() {
@@ -53,7 +53,7 @@ public class AvailableElementsDialog {
 	}
 	
 	public int showDialog() {
-		return JOptionPane.showConfirmDialog(null, components, "Dostêpne elementy", JOptionPane.PLAIN_MESSAGE);
+		return JOptionPane.showConfirmDialog(null, components, "Dostï¿½pne elementy", JOptionPane.PLAIN_MESSAGE);
 	}
 	
 	public BitProcessorWrapper getSelectedValue() {

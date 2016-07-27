@@ -34,10 +34,10 @@ public class StepSimulationWindow extends JFrame{
 	private final JButton singleStepButton, byteStepButton;
 
 	public StepSimulationWindow(Simulator simulator) {
-		this.dataInput = new VisualBitStreamPanel(simulator.getSent(), "Sygna≥ wejúciowy: ");
-		this.encoderOutput = new VisualBitStreamPanel(simulator.getTransOut(), "Wyjúcie nadajnika: ");
-		this.channelOutput = new VisualBitStreamPanel(simulator.getChanOut(), "Wyjúcie kana≥u: ");
-		this.decoderOutput = new VisualBitStreamPanel(simulator.getReceived(), "Sygna≥ odebrany: ");
+		this.dataInput = new VisualBitStreamPanel(simulator.getSent(), "Sygna≈Ç wej≈õciowy: ");
+		this.encoderOutput = new VisualBitStreamPanel(simulator.getTransOut(), "Wyj≈õcie nadajnika: ");
+		this.channelOutput = new VisualBitStreamPanel(simulator.getChanOut(), "Wyj≈õcie kana≈Çu: ");
+		this.decoderOutput = new VisualBitStreamPanel(simulator.getReceived(), "Sygna≈Ç odebrany: ");
 		
 		this.singleStepButton = new JButton("Shift one bit");
 		this.byteStepButton = new JButton("Shift one byte");

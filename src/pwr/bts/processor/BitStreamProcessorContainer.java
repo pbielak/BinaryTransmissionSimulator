@@ -10,21 +10,11 @@ import pwr.bts.stream.ArrayBitOutputStream;
 import pwr.bts.stream.BitInputStream;
 import pwr.bts.stream.BitOutputStream;
 
-/**
- * Container, ktory zawiera wszystkie "przetwarzacze" i może wykonac przetwarzanie
- * wszystkich tych "przetwarzaczy" po kolei.
- * @author jakub
- *
- */
 public class BitStreamProcessorContainer implements BitStreamProcessor {
 	
 	private final ListModel<BitProcessorWrapper> processors;
 	private final List<BitStreamProcessor> rawProcessors;
 	
-	/**
-	 * Konstruktor kopiujacy.
-	 * @param processors
-	 */
 	public BitStreamProcessorContainer(ListModel<BitProcessorWrapper> processors) {
 		this.processors = processors;
 		this.rawProcessors = null;
@@ -35,9 +25,6 @@ public class BitStreamProcessorContainer implements BitStreamProcessor {
 		this.processors = null;
 	}
 	
-	/**
-	 * Wywolanie metod przetwarzajacych wszystkich skladnikow, ktore zawiera ten container.
-	 */
 	@Override
 	public BitInputStream process(BitInputStream stream) {
 		BitOutputStream bos = new ArrayBitOutputStream();
