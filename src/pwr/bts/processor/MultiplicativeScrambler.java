@@ -11,7 +11,7 @@ public class MultiplicativeScrambler extends SimpleAdditiveScrambler {
 	protected long xorOneBit(long next) {
 		long bit = ((randomBuffer >> xorBit) & 1) ^ (randomBuffer & 1);
 		long result = next ^ bit;
-		randomBuffer = (randomBuffer >> 1) & 0x7FFFFFFFFFFFFFFFl | (result << 63);
+		randomBuffer = (randomBuffer >> 1) & 0x7FFFFFFFFFFFFFFFL | (result << 63);
 		return result;
 	}
 }

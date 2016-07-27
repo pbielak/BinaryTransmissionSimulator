@@ -4,12 +4,12 @@ import java.io.InputStream;
 
 public interface BitInputStream  {
 
-	public boolean hasNext();
-	public long peek();
-	public long peek(int bits);
-	public long next();
-	public long next(int bits);
-	public void reset();
-	public long getPointer();
-	public InputStream asInputStream();
+	boolean hasNext();
+	long peek();
+	long peek(int bits);
+	long next();
+	long next(int bits);
+	void reset();
+	long getPointer();
+	InputStream asInputStream();
 }

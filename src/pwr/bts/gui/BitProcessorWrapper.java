@@ -17,10 +17,6 @@ public class BitProcessorWrapper {
 		this.processor = null;
 	}
 
-	public String getName() {
-		return name;
-	}
-
 	public BitStreamProcessor getProcessor() {
 		if(processor == null) {
 			processor = configDialog.createProcessor();

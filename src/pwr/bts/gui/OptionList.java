@@ -25,9 +25,9 @@ public class OptionList extends JPanel{
 		setBorder(BorderFactory.createTitledBorder(title));
 		setLayout(new GridBagLayout());
 		
-		model = new DefaultListModel<BitProcessorWrapper>();
+		model = new DefaultListModel<>();
 		
-		list = new JList<BitProcessorWrapper>(model);
+		list = new JList<>(model);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		list.setPreferredSize(new Dimension(350, 200));
 		addListToPanel();
@@ -140,7 +140,7 @@ public class OptionList extends JPanel{
 	}
 
 	private void moveElements(int firstPosition, int secondPosition) {
-		BitProcessorWrapper tmp = (BitProcessorWrapper) model.get(firstPosition);
+		BitProcessorWrapper tmp = model.get(firstPosition);
 		model.set(firstPosition, model.get(secondPosition));
 		model.set(secondPosition, tmp);
 		

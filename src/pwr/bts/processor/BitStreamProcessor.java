@@ -4,5 +4,5 @@ import pwr.bts.stream.BitInputStream;
 
 public interface BitStreamProcessor {
 
-	public BitInputStream process(BitInputStream stream);
+	BitInputStream process(BitInputStream stream);
 }

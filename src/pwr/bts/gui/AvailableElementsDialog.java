@@ -3,8 +3,6 @@ package pwr.bts.gui;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -25,27 +23,23 @@ public class AvailableElementsDialog {
 		c.gridy = 0;
 		components.add(new JLabel("Wybierz jeden z poniższych elementów"), c);
 		
-		options = new JComboBox<BitProcessorWrapper>();
-		options.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(oldPanel != null) {
-					components.remove(oldPanel);
-				}
-				
-				JPanel panel = ((BitProcessorWrapper) options.getSelectedItem()).getConfigPanel();
-				GridBagConstraints c  = new GridBagConstraints();
-				c.gridx = 0;
-				c.gridy = 2;
-				c.insets = new Insets(20, 0, 0, 0);
-				components.add(panel, c);
-				
-				oldPanel = panel;
-				components.revalidate();
-				components.repaint();
-			}
-		});
+		options = new JComboBox<>();
+		options.addActionListener(e -> {
+            if(oldPanel != null) {
+                components.remove(oldPanel);
+            }
+
+            JPanel panel = ((BitProcessorWrapper) options.getSelectedItem()).getConfigPanel();
+            GridBagConstraints c1 = new GridBagConstraints();
+            c1.gridx = 0;
+            c1.gridy = 2;
+            c1.insets = new Insets(20, 0, 0, 0);
+            components.add(panel, c1);
+
+            oldPanel = panel;
+            components.revalidate();
+            components.repaint();
+        });
 		
 		addOptions();
 		c.gridy = 1;
@@ -53,14 +47,14 @@ public class AvailableElementsDialog {
 	}
 	
 	public int showDialog() {
-		return JOptionPane.showConfirmDialog(null, components, "Dost�pne elementy", JOptionPane.PLAIN_MESSAGE);
+		return JOptionPane.showConfirmDialog(null, components, "Dostępne elementy", JOptionPane.PLAIN_MESSAGE);
 	}
 	
 	public BitProcessorWrapper getSelectedValue() {
 		return (BitProcessorWrapper) options.getSelectedItem();
 	}
 	
-	public void addOptions() {
+	private void addOptions() {
 		options.addItem(new BitProcessorWrapper("Additive Scrambler", new AdditiveScramblerConfigDialog()));
 		options.addItem(new BitProcessorWrapper("Multiplicative Scrambler", new MultiplicativeScramblerConfigDialog()));
 		options.addItem(new BitProcessorWrapper("Multiplicative Descrambler", new MultiplicativeDescramblerConfigDialog()));

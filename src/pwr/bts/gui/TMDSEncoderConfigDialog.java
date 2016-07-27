@@ -13,8 +13,6 @@ import pwr.bts.processor.TMDSEncoder;
 
 public class TMDSEncoderConfigDialog implements BitProcessorConfigDialog {
 	
-	public TMDSEncoderConfigDialog() {}
-	
 	@Override
 	public JPanel getPanel() {
 		return new JPanel();

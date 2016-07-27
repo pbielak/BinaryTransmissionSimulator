@@ -5,13 +5,7 @@ import java.awt.GridBagLayout;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
+import javax.swing.*;
 
 import pwr.bts.ComplexResultsModule;
 import pwr.bts.Simulator;
@@ -19,7 +13,10 @@ import pwr.bts.Simulator;
 public class MainWindow extends JFrame{
 	
 	private Simulator simulator;
-	private JMenuItem fileOpenItem, resultsExportItem, closeItem, startSimulationItem, restartSimulationItem, stepSimulationItem;
+	private JMenuItem fileOpenItem;
+	private JMenuItem startSimulationItem;
+	private JMenuItem restartSimulationItem;
+	private JMenuItem stepSimulationItem;
 	private OptionList encoders, channel, decoders;
 	
 	public MainWindow() {
@@ -69,12 +66,12 @@ public class MainWindow extends JFrame{
 		fileOpenItem.setIcon(UIManager.getIcon("FileView.fileIcon"));
 		fileOpenItem.addActionListener(e -> openFile());
 		fileMenu.add(fileOpenItem);
-		
-		resultsExportItem = new JMenuItem("Export results");
+
+		JMenuItem resultsExportItem = new JMenuItem("Export results");
 		resultsExportItem.addActionListener(e -> exportResults());
 		fileMenu.add(resultsExportItem);
-		
-		closeItem = new JMenuItem("Exit");
+
+		JMenuItem closeItem = new JMenuItem("Exit");
 		closeItem.addActionListener(e -> System.exit(0));
 		fileMenu.add(closeItem);
 		
@@ -100,7 +97,7 @@ public class MainWindow extends JFrame{
 		setTitle("NiDUC Scrambling");
 		setSize(1200, 400);
 		setLayout(new GridBagLayout());
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 
 	private void openFile() {
@@ -140,7 +137,7 @@ public class MainWindow extends JFrame{
 	}
 	
 	private void startSimulation() {
-		String desyncBitCount = JOptionPane.showInputDialog("Podaj liczb� takich samych kolejno występujących bitów powodujących desynchronizację: ");
+		String desyncBitCount = JOptionPane.showInputDialog("Podaj liczbę takich samych kolejno występujących bitów powodujących desynchronizację: ");
 		
 		if(desyncBitCount != null && !desyncBitCount.isEmpty()) {
 			simulator.simulate(Integer.parseInt(desyncBitCount));

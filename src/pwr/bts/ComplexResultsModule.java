@@ -18,19 +18,19 @@ import pwr.bts.stream.RandomBitInputStream;
 
 public class ComplexResultsModule {
 	
-	String[] methodNames = {"Additive Scrambler", "Multiplicative Scrambler", "TMDS"};
-	String[] fileNames = {"Obraz", "Dzwiek", "Szum"};
-	String[] errorTypes = {"Bledy na pojedynczych bitach", "Bledy segmentowe o ustalonej sredniej dlugosci", "Bledy segmentowe o zmiennej sredniej dlugosci"};
-	String[] errorTypeColumns = {"Procent bledow", "Procent bledow", "Srednia dlugosc"};
-	double[] xValues = {100.0 / 128, 100.0 / 64, 100.0 / 32, 100.0 / 16, 100.0 / 128, 100.0 / 64, 100.0 / 32, 100.0 / 16, 4, 8, 16, 32};
+	private String[] methodNames = {"Additive Scrambler", "Multiplicative Scrambler", "TMDS"};
+	private String[] fileNames = {"Obraz", "Dzwiek", "Szum"};
+	private String[] errorTypes = {"Bledy na pojedynczych bitach", "Bledy segmentowe o ustalonej sredniej dlugosci", "Bledy segmentowe o zmiennej sredniej dlugosci"};
+	private String[] errorTypeColumns = {"Procent bledow", "Procent bledow", "Srednia dlugosc"};
+	private double[] xValues = {100.0 / 128, 100.0 / 64, 100.0 / 32, 100.0 / 16, 100.0 / 128, 100.0 / 64, 100.0 / 32, 100.0 / 16, 4, 8, 16, 32};
 	
-	BitStreamProcessorContainer[] transmitters = {
+	private BitStreamProcessorContainer[] transmitters = {
 			new BitStreamProcessorContainer(new SimpleAdditiveScrambler(-7008052270312348889L, 2)),
 			new BitStreamProcessorContainer(new MultiplicativeScrambler(-7008052270312348889L, 2)),
 			new BitStreamProcessorContainer(new TMDSEncoder())
 	};
 	
-	BitStreamProcessorContainer[] channels = {
+	private BitStreamProcessorContainer[] channels = {
 			new BitStreamProcessorContainer(new BitErrorGenerator(128, 16)),
 			new BitStreamProcessorContainer(new BitErrorGenerator(64, 8)),
 			new BitStreamProcessorContainer(new BitErrorGenerator(32, 4)),
@@ -45,18 +45,18 @@ public class ComplexResultsModule {
 			new BitStreamProcessorContainer(new SegmentErrorGenerator(512, 64, 32, 8))
 	};
 	
-	BitStreamProcessorContainer[] receivers = {
+	private BitStreamProcessorContainer[] receivers = {
 			new BitStreamProcessorContainer(new SimpleAdditiveScrambler(-7008052270312348889L, 2)),
 			new BitStreamProcessorContainer(new MultiplicativeDescrambler(-7008052270312348889L, 2)),
 			new BitStreamProcessorContainer(new TMDSDecoder())
 	};
 	
-	BitInputStream[] streams = new BitInputStream[3];
+	private BitInputStream[] streams = new BitInputStream[3];
 	
 	private final Simulator simulator = new Simulator();
 	
-	double[][][] bers = new double[streams.length][transmitters.length][channels.length];
-	long[][][] desyncs = new long[streams.length][transmitters.length][channels.length];
+	private double[][][] bers = new double[streams.length][transmitters.length][channels.length];
+	private long[][][] desyncs = new long[streams.length][transmitters.length][channels.length];
 	
 	public ComplexResultsModule() throws IOException {
 		streams[0] = new FileBitInputStream(new File("pliktest.png"));

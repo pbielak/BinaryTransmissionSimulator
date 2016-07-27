@@ -1,34 +1,11 @@
 package pwr.bts.gui;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartFrame;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.time.TimeSeries;
-import org.jfree.data.time.TimeSeriesCollection;
-import org.jfree.data.time.TimeSeriesDataItem;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-
 import pwr.bts.Simulator;
-import pwr.bts.stream.BitInputStream;
 
-public class StepSimulationWindow extends JFrame{ 
+import javax.swing.*;
+import java.awt.*;
+
+public class StepSimulationWindow extends JFrame {
 	
 	private final VisualBitStreamPanel dataInput, encoderOutput, channelOutput, decoderOutput;
 	private final JButton singleStepButton, byteStepButton;

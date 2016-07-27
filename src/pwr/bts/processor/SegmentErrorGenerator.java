@@ -20,14 +20,14 @@ public class SegmentErrorGenerator extends BitErrorGenerator {
 	@Override
 	public BitInputStream process(BitInputStream stream) {
 		BitOutputStream bos = new ArrayBitOutputStream();
-		int bitsToError = bitsToError(), segmentLength = getSegmentLenght();
+		int bitsToError = bitsToError(), segmentLength = getSegmentLength();
 		
 		while (stream.hasNext())
 			if (bitsToError > 0) {
 				bos.offer(stream.next(), 1);
 				bitsToError--;
 			} else {
-				segmentLength = getSegmentLenght();
+				segmentLength = getSegmentLength();
 				bitsToError = -segmentLength;
 				
 				for (; segmentLength > 0 && stream.hasNext(); segmentLength--)
@@ -39,7 +39,7 @@ public class SegmentErrorGenerator extends BitErrorGenerator {
 		return bos.convert();
 	}
 	
-	private int getSegmentLenght() {
+	private int getSegmentLength() {
 		return (int) Math.round(rand.nextGaussian() * stddevSegLen + meanSegLen);
 	}
 }

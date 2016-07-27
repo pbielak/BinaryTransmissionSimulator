@@ -6,10 +6,10 @@ import pwr.bts.stream.BitOutputStream;
 
 public class SimpleAdditiveScrambler implements BitStreamProcessor {
 
-	protected final long seed;
-	protected final int xorBit;
+	private final long seed;
+	final int xorBit;
 	
-	protected long randomBuffer;
+	long randomBuffer;
 	
 	public SimpleAdditiveScrambler(long seed, int xorBit) {
 		this.seed = seed;
@@ -31,7 +31,7 @@ public class SimpleAdditiveScrambler implements BitStreamProcessor {
 
 	protected long xorOneBit(long next) {
 		long bit = ((randomBuffer >> xorBit) & 1) ^ (randomBuffer & 1);
-		randomBuffer = (randomBuffer >> 1) & 0x7FFFFFFFFFFFFFFFl | (bit << 63);
+		randomBuffer = (randomBuffer >> 1) & 0x7FFFFFFFFFFFFFFFL | (bit << 63);
 		return bit ^ next;
 	}
 }
