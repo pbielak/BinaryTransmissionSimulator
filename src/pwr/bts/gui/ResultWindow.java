@@ -31,7 +31,7 @@ public class ResultWindow extends JFrame {
 	public ResultWindow(Simulator simulator) {
 		this.simulator = simulator;
 		
-		setTitle("Wyniki symulacji");
+		setTitle("Simulation results");
 		setSize(700, 700);
 		setResizable(false);	
 		setLayout(new GridBagLayout());
@@ -41,15 +41,14 @@ public class ResultWindow extends JFrame {
 	}
 	
 	private void makePanels() {
-		zerosBefore = getPanel("Zera (wejście)", simulator.getSent(), 0);
-		zerosAfter = getPanel("Zera (wyjście nadajnika)", simulator.getTransOut(), 0);
-		onesBefore = getPanel("Jedynki (wejście)", simulator.getSent(), 1);
-		onesAfter = getPanel("Jedynki (wyjście nadajnika)", simulator.getTransOut(), 1);
+		zerosBefore = getPanel("Zeros (input)", getCollection(simulator.getSent(), 0));
+		zerosAfter = getPanel("Zeros (transmitter output)", getCollection(simulator.getTransOut(), 0));
+		onesBefore = getPanel("Ones (input)", getCollection(simulator.getSent(), 1));
+		onesAfter = getPanel("Ones (transmitter output)", getCollection(simulator.getTransOut(), 1));
 	}
 
-	private ChartPanel getPanel(String title, BitInputStream stream, int lookForValue) {
-		XYSeriesCollection collection = getCollection(stream, lookForValue);
-		JFreeChart chart = ChartFactory.createXYBarChart(title, "Długość ciągu", false, "Liczba wystąpień", collection,
+	private ChartPanel getPanel(String title, XYSeriesCollection collection) {
+		JFreeChart chart = ChartFactory.createXYBarChart(title, "Series length", false, "Occurrences", collection,
 				PlotOrientation.VERTICAL, false, true, false);
 		
 		ChartPanel panel = new ChartPanel(chart);
@@ -60,26 +59,31 @@ public class ResultWindow extends JFrame {
 	
 	private XYSeriesCollection getCollection(BitInputStream stream, int lookForValue) {
 		XYSeries series = new XYSeries("");
-		
-		Map<Integer, Integer> values = new HashMap<>();
-		int blockLength = 0;
-		stream.reset();
-		
-		while(stream.hasNext()) {
-			if(stream.next() == lookForValue)
-				blockLength++;
-			else {
-				int count = values.containsKey(blockLength) ? values.get(blockLength) : 0; 
-				values.put(blockLength, count + 1);
-				blockLength = 0;
-			}
-		}
-		
+
+		Map<Integer, Integer> values = getBitBlockOccurrences(stream, lookForValue);
+
 		for(int key : values.keySet()) {
 			series.add(key, values.get(key));
 		}
 		
 		return new XYSeriesCollection(series);
+	}
+
+	private Map<Integer, Integer> getBitBlockOccurrences(BitInputStream stream, int lookForValue) {
+		Map<Integer, Integer> values = new HashMap<>();
+		int blockLength = 1;
+		stream.reset();
+
+		while(stream.hasNext()) {
+			if(stream.next() == lookForValue)
+				blockLength++;
+			else {
+				int count = values.containsKey(blockLength) ? values.get(blockLength) : 0;
+				values.put(blockLength, count + 1);
+				blockLength = 1;
+			}
+		}
+		return values;
 	}
 
 	private void addPanels() {
@@ -135,7 +139,7 @@ public class ResultWindow extends JFrame {
 		stats.add(efficiency, c);
 		
 		c.gridy = 2;
-		JLabel desync = new JLabel("DesyncsCount: " + simulator.getDesyncsCount());
+		JLabel desync = new JLabel("DesynchronizationCount: " + simulator.getDesyncsCount());
 		desync.setFont(new Font("Serif", Font.BOLD, 14));
 		stats.add(desync, c);
 		
