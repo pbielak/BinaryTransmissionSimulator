@@ -33,7 +33,7 @@ public abstract class AbstractScramblerConfigDialog implements BitProcessorConfi
 		c.gridy = 0;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx = 0.1;
-		panel.add(new JLabel("Ziarno: "), c);
+		panel.add(new JLabel("Seed: "), c);
 		
 		c.gridx = 1;
 		c.weightx = 0.8;
@@ -59,7 +59,7 @@ public abstract class AbstractScramblerConfigDialog implements BitProcessorConfi
 
 	@Override
 	public String getDescription() {
-		String description = String.format("(Ziarno: %s | XorBit: %s)", seedTextField.getText(), xorBitTextField.getText()); 
+		String description = String.format("(Seed: %s | XorBit: %s)", seedTextField.getText(), xorBitTextField.getText());
 		return (seedTextField.getText().isEmpty() && xorBitTextField.getText().isEmpty()) ? "" : description;
 	}
 }

@@ -19,9 +19,9 @@ import pwr.bts.stream.RandomBitInputStream;
 public class ComplexResultsModule {
 	
 	private String[] methodNames = {"Additive Scrambler", "Multiplicative Scrambler", "TMDS"};
-	private String[] fileNames = {"Obraz", "Dzwiek", "Szum"};
-	private String[] errorTypes = {"Bledy na pojedynczych bitach", "Bledy segmentowe o ustalonej sredniej dlugosci", "Bledy segmentowe o zmiennej sredniej dlugosci"};
-	private String[] errorTypeColumns = {"Procent bledow", "Procent bledow", "Srednia dlugosc"};
+	private String[] fileNames = {"Picutres", "Sound", "Noise"};
+	private String[] errorTypes = {"Single bit error", "Segment bit errors with fixed mean length", "Segment bit errors with variable mean length"};
+	private String[] errorTypeColumns = {"Error percentage", "Error percentage", "Mean length"};
 	private double[] xValues = {100.0 / 128, 100.0 / 64, 100.0 / 32, 100.0 / 16, 100.0 / 128, 100.0 / 64, 100.0 / 32, 100.0 / 16, 4, 8, 16, 32};
 	
 	private BitStreamProcessorContainer[] transmitters = {
@@ -106,9 +106,9 @@ public class ComplexResultsModule {
 				}
 			}
 			
-			out.println(fileNames[stream] + " - Desynchronizacje");
+			out.println(fileNames[stream] + " - Desynchronizations");
 			
-			out.println("Metoda;Liczba desynchronizacji");
+			out.println("Method;Number of desynchronizations");
 			
 			for (int method = 0; method < transmitters.length; method++)
 				out.println(methodNames[method] + ";" + desyncs[stream][method][0]);

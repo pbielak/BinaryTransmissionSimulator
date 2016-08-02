@@ -9,12 +9,12 @@ import pwr.bts.stream.BitOutputStream;
 public class SegmentErrorGenerator extends BitErrorGenerator {
 
 	private final Random rand = new Random();
-	private final double meanSegLen, stddevSegLen;
+	private final double meanSegmentLength, deviationSegmentLength;
 	
-	public SegmentErrorGenerator(double meanFreq, double stddevFreq, double meanSegLen, double stddevSegLen) {
-		super(meanFreq, stddevFreq);
-		this.meanSegLen = meanSegLen;
-		this.stddevSegLen = stddevSegLen;
+	public SegmentErrorGenerator(double meanFrequency, double deviationFrequency, double meanSegmentLength, double deviationSegmentLength) {
+		super(meanFrequency, deviationFrequency);
+		this.meanSegmentLength = meanSegmentLength;
+		this.deviationSegmentLength = deviationSegmentLength;
 	}
 	
 	@Override
@@ -40,6 +40,6 @@ public class SegmentErrorGenerator extends BitErrorGenerator {
 	}
 	
 	private int getSegmentLength() {
-		return (int) Math.round(rand.nextGaussian() * stddevSegLen + meanSegLen);
+		return (int) Math.round(rand.nextGaussian() * deviationSegmentLength + meanSegmentLength);
 	}
 }

@@ -9,11 +9,11 @@ import pwr.bts.stream.BitOutputStream;
 public class BitErrorGenerator implements BitStreamProcessor {
 
 	private final Random rand = new Random();
-	private final double mean, stddev;
+	private final double mean, deviation;
 	
-	public BitErrorGenerator(double mean, double stddev) {
+	public BitErrorGenerator(double mean, double deviation) {
 		this.mean = mean;
-		this.stddev = stddev;
+		this.deviation = deviation;
 	}
 	
 	@Override
@@ -34,6 +34,6 @@ public class BitErrorGenerator implements BitStreamProcessor {
 	}
 	
 	protected int bitsToError() {
-		return (int) Math.round(rand.nextGaussian() * stddev + mean);
+		return (int) Math.round(rand.nextGaussian() * deviation + mean);
 	}
 }

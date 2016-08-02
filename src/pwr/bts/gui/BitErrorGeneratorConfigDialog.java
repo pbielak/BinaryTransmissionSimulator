@@ -14,11 +14,11 @@ import pwr.bts.processor.BitErrorGenerator;
 public class BitErrorGeneratorConfigDialog implements BitProcessorConfigDialog {
 
 	private JTextField meanTextField;
-	private JTextField stddevTextField;
+	private JTextField deviationTextField;
 	
 	public BitErrorGeneratorConfigDialog() {
 		meanTextField = new JTextField();
-		stddevTextField = new JTextField();
+		deviationTextField = new JTextField();
 	}
 	
 	@Override
@@ -32,7 +32,7 @@ public class BitErrorGeneratorConfigDialog implements BitProcessorConfigDialog {
 		c.gridy = 0;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx = 0.1;
-		panel.add(new JLabel("Srednia: "), c);
+		panel.add(new JLabel("Mean: "), c);
 		
 		c.gridx = 1;
 		c.weightx = 0.9;
@@ -42,11 +42,11 @@ public class BitErrorGeneratorConfigDialog implements BitProcessorConfigDialog {
 		c.gridy = 1;
 		c.gridx = 0;
 		c.weightx = 0.1;
-		panel.add(new JLabel("Odchylenie: "), c);
+		panel.add(new JLabel("Deviation: "), c);
 		
 		c.gridx = 1;
 		c.weightx = 0.9;
-		panel.add(stddevTextField, c);
+		panel.add(deviationTextField, c);
 		
 		return panel;
 	}
@@ -54,14 +54,14 @@ public class BitErrorGeneratorConfigDialog implements BitProcessorConfigDialog {
 	@Override
 	public BitStreamProcessor createProcessor() {
 		double mean = Double.parseDouble(meanTextField.getText());
-		double stddev = Double.parseDouble(stddevTextField.getText());
-		return new BitErrorGenerator(mean, stddev);
+		double deviation = Double.parseDouble(deviationTextField.getText());
+		return new BitErrorGenerator(mean, deviation);
 	}
 
 	@Override
 	public String getDescription() {
-		String description = String.format("(Srednia: %s | Odchylenie: %s)", meanTextField.getText(), stddevTextField.getText());
-		return (meanTextField.getText().isEmpty() && stddevTextField.getText().isEmpty()) ? "" : description;
+		String description = String.format("(Mean: %s | Deviation: %s)", meanTextField.getText(), deviationTextField.getText());
+		return (meanTextField.getText().isEmpty() && deviationTextField.getText().isEmpty()) ? "" : description;
 	}
 
 }

@@ -21,33 +21,35 @@ public class AvailableElementsDialog {
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 0;
-		components.add(new JLabel("Wybierz jeden z poniższych elementów"), c);
+		components.add(new JLabel("Choose one of the following options"), c);
 		
 		options = new JComboBox<>();
-		options.addActionListener(e -> {
-            if(oldPanel != null) {
-                components.remove(oldPanel);
-            }
-
-            JPanel panel = ((BitProcessorWrapper) options.getSelectedItem()).getConfigPanel();
-            GridBagConstraints c1 = new GridBagConstraints();
-            c1.gridx = 0;
-            c1.gridy = 2;
-            c1.insets = new Insets(20, 0, 0, 0);
-            components.add(panel, c1);
-
-            oldPanel = panel;
-            components.revalidate();
-            components.repaint();
-        });
+		options.addActionListener(e -> handleItemChange());
 		
 		addOptions();
 		c.gridy = 1;
 		components.add(options, c);
 	}
-	
+
+	private void handleItemChange() {
+		if(oldPanel != null) {
+            components.remove(oldPanel);
+        }
+
+		JPanel panel = ((BitProcessorWrapper) options.getSelectedItem()).getConfigPanel();
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = 2;
+		c.insets = new Insets(20, 0, 0, 0);
+		components.add(panel, c);
+
+		oldPanel = panel;
+		components.revalidate();
+		components.repaint();
+	}
+
 	public int showDialog() {
-		return JOptionPane.showConfirmDialog(null, components, "Dostępne elementy", JOptionPane.PLAIN_MESSAGE);
+		return JOptionPane.showConfirmDialog(null, components, "Available elements", JOptionPane.PLAIN_MESSAGE);
 	}
 	
 	public BitProcessorWrapper getSelectedValue() {

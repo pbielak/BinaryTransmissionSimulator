@@ -114,8 +114,8 @@ public class MainWindow extends JFrame{
 				startSimulationItem.setEnabled(true);
 				stepSimulationItem.setEnabled(true);
 				restartSimulationItem.setEnabled(true);
-			} catch (IOException e1) {
-				JOptionPane.showMessageDialog(this, "Blad przy wczytywaniu pliku");
+			} catch (IOException e) {
+				JOptionPane.showMessageDialog(this, "Error while reading file!");
 			}
 		}
 	}
@@ -129,18 +129,18 @@ public class MainWindow extends JFrame{
 			
 			try {
 				new ComplexResultsModule().generateResults(file);
-				JOptionPane.showMessageDialog(this, "Wyniki pomyslnie wyeksportowane");
+				JOptionPane.showMessageDialog(this, "Export successful");
 			} catch (IOException e) {
-				JOptionPane.showMessageDialog(this, "Blad przy eksportowaniu wynikow");
+				JOptionPane.showMessageDialog(this, "Error while exporting results!");
 			}
 		}
 	}
 	
 	private void startSimulation() {
-		String desyncBitCount = JOptionPane.showInputDialog("Podaj liczbę takich samych kolejno występujących bitów powodujących desynchronizację: ");
+		String desynchronizationBitCount = JOptionPane.showInputDialog("Number of consecutive bits, which cause desynchronization: ");
 		
-		if(desyncBitCount != null && !desyncBitCount.isEmpty()) {
-			simulator.simulate(Integer.parseInt(desyncBitCount));
+		if(desynchronizationBitCount != null && !desynchronizationBitCount.isEmpty()) {
+			simulator.simulate(Integer.parseInt(desynchronizationBitCount));
 			
 			ResultWindow window = new ResultWindow(simulator);
 			window.setVisible(true);

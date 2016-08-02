@@ -11,10 +11,10 @@ public class StepSimulationWindow extends JFrame {
 	private final JButton singleStepButton, byteStepButton;
 
 	public StepSimulationWindow(Simulator simulator) {
-		this.dataInput = new VisualBitStreamPanel(simulator.getSent(), "Sygnał wejściowy: ");
-		this.encoderOutput = new VisualBitStreamPanel(simulator.getTransOut(), "Wyjście nadajnika: ");
-		this.channelOutput = new VisualBitStreamPanel(simulator.getChanOut(), "Wyjście kanału: ");
-		this.decoderOutput = new VisualBitStreamPanel(simulator.getReceived(), "Sygnał odebrany: ");
+		this.dataInput = new VisualBitStreamPanel(simulator.getSent(), "Input signal: ");
+		this.encoderOutput = new VisualBitStreamPanel(simulator.getTransOut(), "Transmitter output: ");
+		this.channelOutput = new VisualBitStreamPanel(simulator.getChanOut(), "Channel output: ");
+		this.decoderOutput = new VisualBitStreamPanel(simulator.getReceived(), "Received signal: ");
 		
 		this.singleStepButton = new JButton("Shift one bit");
 		this.byteStepButton = new JButton("Shift one byte");
@@ -23,7 +23,7 @@ public class StepSimulationWindow extends JFrame {
 	}
 
 	private void initFrame() {
-		setTitle("Symulacja krokowa");
+		setTitle("Step simulation");
 		setSize(1000, 200);
 		setResizable(false);
 		
